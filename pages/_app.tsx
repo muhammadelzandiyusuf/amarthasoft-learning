@@ -3,6 +3,8 @@ import { type ReactElement, type ReactNode } from 'react';
 import type { AppProps } from 'next/app';
 import type { NextPage } from 'next/types';
 
+// eslint-disable-next-line import/extensions
+import { wrapper } from '@/store/store';
 import globalStyle from '@/utils/styles/globalStyle';
 
 type NextPageWithLayout = NextPage & {
@@ -15,4 +17,4 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   return getLayout(<Component {...pageProps} />);
 }
-export default MyApp;
+export default wrapper.withRedux(MyApp);
