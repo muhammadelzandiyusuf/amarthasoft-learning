@@ -1,7 +1,20 @@
-import '../styles/globals.css'
-import type { AppProps } from 'next/app'
+import { type ReactElement, type ReactNode } from 'react';
+
+import type { AppProps } from 'next/app';
+import type { NextPage } from 'next/types';
+
+// eslint-disable-next-line import/extensions
+import { wrapper } from '@/store/store';
+import globalStyle from '@/utils/styles/globalStyle';
+
+type NextPageWithLayout = NextPage & {
+  getLayout: (page: ReactElement) => ReactNode;
+};
 
 function MyApp({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
+  const getLayout = (Component as NextPageWithLayout).getLayout || ((page: ReactNode) => page);
+  globalStyle();
+
+  return getLayout(<Component {...pageProps} />);
 }
-export default MyApp
+export default wrapper.withRedux(MyApp);

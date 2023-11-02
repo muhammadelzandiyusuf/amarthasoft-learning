@@ -24,13 +24,11 @@
       }
     ],
     "paths": {
-      "@/providers/*": ["./src/providers/*"],
       "@/components/*": ["./src/components/*"],
       "@/constants/*": ["./src/constants/*"],
-      "@/gql/*": ["./src/gql/*"],
       "@/hooks/*": ["./src/hooks/*"],
       "@/pages/*": ["./src/pages/*"],
-      "@/templates/*": ["./src/templates/*"],
+      "@/store/*": ["./src/store/*"],
       "@/utils/*": ["./src/utils/*"],
     }
   },
