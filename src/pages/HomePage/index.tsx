@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import Space from '@/components/Space';
 import Text from '@/components/Text';
-import dataReports, { ReportDataState } from '@/constants/reports';
+import dataReports from '@/constants/reports';
 import { StyledContainer, StyledContentTitle } from '@/pages/HomePage/_HomeStyle';
 import HomePageCard from '@/pages/HomePage/Sections/HomePageCard';
 import { selectReportState, setReportState } from '@/store/report/reportSlice';
