@@ -7,7 +7,7 @@ import Text from '@/components/Text';
 import dataReports from '@/constants/reports';
 import { StyledContainer, StyledContentTitle } from '@/pages/HomePage/_HomeStyle';
 import HomePageCard from '@/pages/HomePage/Sections/HomePageCard';
-import { selectReportState, setReportState } from '@/store/report/reportSlice';
+import { selectReportState, reportSlice } from '@/store/report/reportSlice';
 import colors from '@/utils/styles/theme/colors';
 
 const HomePage = () => {
@@ -15,7 +15,7 @@ const HomePage = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(setReportState(dataReports));
+    dispatch(reportSlice.actions.setReportState(dataReports));
   }, [dispatch]);
 
   const dataReportFilter = useMemo(() => {

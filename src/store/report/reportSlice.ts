@@ -1,5 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
-import { HYDRATE } from 'next-redux-wrapper';
+import { Action, AnyAction, createAction, createSlice } from '@reduxjs/toolkit';
 
 import { AppState } from '@/store/store';
 
@@ -18,6 +17,16 @@ const initialState: ReportDataState = {
   data: [],
 };
 
+const setReportState = createAction<ReportDataState>('setReportState');
+
+interface RejectedAction extends Action {
+  error: Error;
+}
+
+function isRejectedAction(action: AnyAction): action is RejectedAction {
+  return action.type.endsWith('rejected');
+}
+
 export const reportSlice = createSlice({
   name: 'report',
   initialState,
@@ -26,18 +35,18 @@ export const reportSlice = createSlice({
       state.data = action.payload;
     },
   },
-
-  extraReducers: {
-    [HYDRATE]: (state, action) => {
-      return {
-        ...state,
-        ...action.payload.report,
-      };
-    },
+  extraReducers: (builder) => {
+    builder
+      .addCase(setReportState, (state, action) => {
+        return {
+          ...state,
+          ...action.payload,
+        };
+      })
+      .addMatcher(isRejectedAction, () => {})
+      .addDefaultCase(() => {});
   },
 });
-
-export const { setReportState } = reportSlice.actions;
 
 export const selectReportState = (state: AppState) => state.report.data;
 

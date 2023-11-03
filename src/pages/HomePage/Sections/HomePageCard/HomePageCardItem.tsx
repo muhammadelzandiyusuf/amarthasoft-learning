@@ -21,9 +21,21 @@ const HomePageCardItem = ({ index, data }: HomePageCardItemProps) => {
         <Col span={8}>
           <Space fullWidth justify='center' align='center'>
             {image === 'up' ? (
-              <Image src='/assets/images/sales-up.png' alt='sales image' width={60} height={60} />
+              <Image
+                src='/assets/images/sales-up.png'
+                alt='sales image'
+                width={60}
+                height={60}
+                priority
+              />
             ) : (
-              <Image src='/assets/images/sales-down.png' alt='sales image' width={60} height={60} />
+              <Image
+                src='/assets/images/sales-down.png'
+                alt='sales image'
+                width={60}
+                height={60}
+                priority
+              />
             )}
           </Space>
         </Col>
